@@ -1,0 +1,57 @@
+﻿/**
+    @fileOverview
+    阅读样式
+    @author Jinjiang<zhaojinjiang@yahoo.com.cn>
+ */
+
+
+
+
+html {
+	font-family: "Microsoft JhengHei", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	line-height: 1.5em;
+}
+
+h1 {
+	border-bottom-style: solid;
+	border-bottom-width: thick;
+	padding-bottom: 0.5em;
+}
+
+h2 {
+	background-color: #000000;
+	color: #FFFFFF;
+	padding: 0.5em;
+}
+
+dt {
+	font-size: x-large;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+dd {
+	margin-bottom: 0.5em;
+	background-color: #eee;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+ul {
+	margin-left: 1em;
+	list-style-type: none;
+}
+
+li {
+	margin-bottom: 1em;
+	border-left-style: solid;
+	border-left-width: thick;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+li strong {
+	font-size: large;
+}
+
+
+

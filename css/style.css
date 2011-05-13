@@ -8,9 +8,6 @@
 
 
 /***** 基本属性 *****/
-html {
-    overflow: hidden;
-}
 body {
     background: white;
     margin: 0 auto;

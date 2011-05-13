@@ -11,6 +11,9 @@
 
 
 /***** 基本属性 *****/
+html {
+    overflow: hidden;
+}
 .slide {
     width: 520px;
     height: 360px;

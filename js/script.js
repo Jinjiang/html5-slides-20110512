@@ -14,6 +14,7 @@ if (!window.console) {
 
 var currentPage = 0;
 var maxPage = 1;
+var mode = 1; // 1 means slide-mode, 2 means reading-mode
 
 
 
@@ -105,91 +106,14 @@ function gotoPrev() {
 
 
 
-// -------------------- 程序初始化 --------------------
+// -------------------- 事件绑定 --------------------
 
 
-// 根据浏览器尺寸调整页面大小，
-// 根据location中的hash值设置默认显示的幻灯片(#slideX)
-$(function () {
-
-    // 程序运行之前的扩展钩子
-    runHooks(hooksBeforeInit);
-
-    // 初始化页面尺寸
-    resize();
-    $(window).resize(resize);
-
-    // 初始化幻灯片的总数
-    maxPage = $('body > div').each(function (i, slide) {
-        slide.id = 'slide' + (i - (-1));
-    }).length;
-
-    // 初始化默认显示幻灯片的编号
-    var pageTarget = location.hash.match(/^\#slide(\d+)$/);
-
-    // 翻页到默认显示的幻灯片
-    if (!pageTarget || !(pageTarget[1] - 0) ||
-            pageTarget[1] < 0 || pageTarget[1] > maxPage) {
-        gotoPage(1);
-    }
-    else {
-        currentPage = pageTarget[1];
-        
-        // hack the refresh problem in firefox/opera
-        location = '#slide0';
-        location = '#slide' + currentPage;
-    }
-    
-    // 程序初始化之后的扩展钩子
-    runHooks(hooksAfterInit);
-
-    /*
-
-    // 绑定鼠标点击事件
-    $(window).click(function (evt) {
-        var DISABLED_NODENAME_MAP = {
-            INPUT: true,
-            SELECT: true,
-            TEXTAREA: true,
-            A: true
-        };
-        
-        if (runHooks(hooksBeforeClick)) {
-            return;
-        }
-    
-        if (DISABLED_NODENAME_MAP[evt.target.nodeName]) {
-            return;
-        }
-        
-        gotoNext();
-    
-        runHooks(hooksAfterClick);
-    });
-    
-
-    // 绑定触摸屏的触摸事件
-    document.body.addEventListener('touchstart', function (e) {
-        window._touchStartX = e.touches[0].pageX;
-    }, false);
-
-    document.body.addEventListener('touchend', function (e) {
-        var SWIPE_SIZE = 150;
-        var delta = e.changedTouches[0].pageX - window._touchStartX;
-
-        if (delta > SWIPE_SIZE) {
-            gotoNext();
-        } else if (delta < -SWIPE_SIZE) {
-            gotoPrev();
-        }
-    }, false);
-    
-    */
-});
-
-
-// 根据用户的键盘操作匹配翻页、显示动画等操作
-$('html, body').keydown(function (evt) {
+/**
+    根据用户的键盘操作匹配翻页、显示动画等操作
+    @event
+ */
+function keydown(evt) {
     var DISABLED_NODENAME_MAP = {
         INPUT: true,
         SELECT: true,
@@ -256,10 +180,13 @@ $('html, body').keydown(function (evt) {
 
     // 快捷键生效之后的扩展钩子
     runHooks(hooksAfterKeydown);
-});
+}
 
 
-// 调整页面大小
+/**
+    调整页面大小
+    @event
+ */
 function resize() {
     var defaultSize = {w: 690, h: 460};
     var screenSize = {w: $(document).width(), h: $(document).height()};
@@ -348,6 +275,48 @@ function runHooks(hooks) {
     return result;
 }
 
+
+
+
+// -------------------- 程序初始化 --------------------
+
+
+// 根据浏览器尺寸调整页面大小，
+// 根据location中的hash值设置默认显示的幻灯片(#slideX)
+$(function () {
+
+    // 程序运行之前的扩展钩子
+    runHooks(hooksBeforeInit);
+
+    // 初始化页面尺寸，绑定键盘事件
+    resize();
+    $(window).resize(resize);
+    $('html, body').keydown(keydown);
+
+    // 初始化幻灯片的总数
+    maxPage = $('body > div').each(function (i, slide) {
+        slide.id = 'slide' + (i - (-1));
+    }).length;
+
+    // 初始化默认显示幻灯片的编号
+    var pageTarget = location.hash.match(/^\#slide(\d+)$/);
+
+    // 翻页到默认显示的幻灯片
+    if (!pageTarget || !(pageTarget[1] - 0) ||
+            pageTarget[1] < 0 || pageTarget[1] > maxPage) {
+        gotoPage(1);
+    }
+    else {
+        currentPage = pageTarget[1];
+        
+        // hack the refresh problem in firefox/opera
+        location = '#slide0';
+        location = '#slide' + currentPage;
+    }
+    
+    // 程序初始化之后的扩展钩子
+    runHooks(hooksAfterInit);
+});
 
 
 

@@ -14,6 +14,7 @@
 <script src="js/jquery.js"></script>
 
 <script src="js/script.js"></script>
+<script src="js/mode.js"></script>
 
 <!--[if IE]>
 <script src="js/script.ie.js"></script>
@@ -68,6 +69,7 @@
             <li>我们该如何看待HTML5<ol>
             <li><strong>前端</strong>vs<strong>前端工程师</strong></li>
             <li><strong>前端</strong>的发展和<strong>浏览器</strong>的发展</li></ol></li>
+            <li><strong>How</strong> HTML5? <strong>Why</strong> Slide Shows?</li>
             <li>HTML5幻灯片的<strong>制作过程</strong><ol>
             <li><strong>功能点</strong>摘要</li>
             <li>结合<strong>代码讲解</strong>实现思路</li></ol></li>
@@ -123,8 +125,40 @@
     <h1>药家鑫必需死！</h1>
 </div-->
 
+<div class="tmpl-subtitle">
+    <h2>三、How HTML5? Why Slide Shows?</h2>
+</div>
+
+<div class="tmpl-block">
+    <h2>How HTML5?</h2>
+    <section>
+        <img alt="" src="src/how-html5-1.jpg" />
+    </section>
+</div>
+
+<div class="tmpl-block">
+    <h2>How HTML5?</h2>
+    <section>
+        <img alt="" src="src/how-html5-2.jpg" />
+    </section>
+</div>
+
 <div>
-    <h2>三、HTML5幻灯片的制作过程</h2>
+    <h2>Why Slide Shows?</h2>
+    <section>
+        <ul>
+            <li>《让子弹飞》：<strong>步子迈大了，容易扯着蛋！</strong></li>
+            <li class="actable">国内现在都在谈概念、秀技术，至今没有真正的王牌产品问世</li>
+            <li class="actable">幻灯片是常见应用，接触的机会非常频繁</li>
+            <li class="actable">网上已经有一些HTML5幻灯片的出现，但我们缺乏对其深入的了解</li>
+            <li class="actable">通过共鸣度较高的简单应用的实战，拉进我们和HTML5之间的距离</li>
+            <li class="actable">大家平时既是观察者，又是使用者，今天大家都会变成开发者！</li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>四、HTML5幻灯片的制作过程</h2>
     <section>
         <ol>
             <li><strong>功能点</strong>摘要</li>
@@ -132,7 +166,7 @@
             <li>分步实现<strong>JS逻辑</strong>和<strong>CSS表现</strong></li>
             <li><strong>特殊元素</strong>特殊处理</li>
             <li>其它<strong>高级</strong>处理</li>
-            <li>结合源代码逐步讲解</li>
+            <li>结合<strong>源代码</strong>逐步讲解</li>
         </ol>
         <p>注：部分动画和缩放特效暂只针对 Webkit <sub>v533.9</sub> 内核进行开发</p>
     </section>
@@ -142,23 +176,23 @@
     <h2>1. 功能点整理</h2>
     <section>
         <ul>
-            <li class="actable">上翻页，下翻页<ul>
-                <li class="actable">快捷键：上、下、左、右</li>
-                <li class="actable">快捷键：PAGE UP、PAGE DOWN</li>
-                <li class="actable"><del>鼠标单击事件、鼠标滚轮事件</del></li>
-                <li class="actable"><del>触摸屏幕事件</del></li>
+            <li>上翻页，下翻页<ul>
+                <li>快捷键：上、下、左、右</li>
+                <li>快捷键：PAGE UP、PAGE DOWN</li>
+                <li><del>鼠标单击事件、鼠标滚轮事件</del></li>
+                <li><del>触摸屏幕事件</del></li>
             </ul>
             </li>
-            <li class="actable">翻页到最前、最后：<ul>
-                <li class="actable">快捷键：HOME、END</li>
+            <li>翻页到最前、最后：<ul>
+                <li>快捷键：HOME、END</li>
             </ul>
             </li>
-            <li class="actable">翻到指定的页<ul>
-                <li class="actable">通过location hash，即#slideX<ul>
-                    <li class="actable">注意：要考虑hash纠错</li>
+            <li>翻到指定的页<ul>
+                <li>通过location hash，即#slideX<ul>
+                    <li>注意：要考虑hash纠错</li>
                 </ul>
                 </li>
-                <li class="actable">通过快捷键，Ctrl + G</li>
+                <li>通过快捷键，Ctrl + G</li>
             </ul>
             </li>
         </ul>
@@ -170,7 +204,7 @@
     <section>
         <ul>
             <li class="actable">原则：尽量让结构<strong>简单</strong>、尽量<strong>沿用Powerpoint</strong>的结构</li>
-            <li class="actable">只要body &gt; div.slide</li>
+            <li class="actable">只要body &gt; div(.slide)</li>
             <li class="actable">确定id命名规律：#slideX</li>
             <li class="actable">提供统一的.tmpl-xxx<strong>模板</strong>类型，这里和Powerpoint中的模板对应</li>
             <li class="actable">每个页面都可以由标题(h1)、次标题(h2)、正文、段落、图片等<strong>固定标签</strong>组合而成，和Powerpoint中的元素对应</li>
@@ -234,7 +268,7 @@
 </div>
 
 <div>
-    <h2>四、发散思路</h2>
+    <h2>五、发散思路</h2>
     <section>
         <ul>
             <li class="actable">更好的<strong>标签语义</strong></li>
