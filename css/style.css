@@ -1,0 +1,155 @@
+﻿/**
+    @fileOverview
+    HTML5幻灯片样式
+    @author Jinjiang<zhaojinjiang@yahoo.com.cn>
+ */
+
+
+
+
+/***** 基本属性 *****/
+body {
+    background: white;
+    margin: 0 auto;
+    font-family: "Microsoft JhengHei";
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+h1, h2, h3, strong {
+    text-shadow: 2px 2px 3px white;
+    color: navy;
+}
+
+a {
+    color: blue;
+    font-weight: bold;
+}
+
+input, button, textarea, select {
+    font-family: "Microsoft JhengHei";
+    font-size: 100%;
+}
+
+
+
+
+/***** 幻灯片样式 *****/
+body > div {
+    width: 600px;
+    height: 400px;
+    background-color: rgba(0, 128, 196, 0.5);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 20px 40px;
+    margin: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -webkit-transform: scale(1.2) rotate(5deg);
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+}
+
+body > div:nth-child(even) {
+    background-color: rgba(128, 196, 128, 0.5);
+}
+
+
+/* 展示中的幻灯片的样式 */
+body > div:target {
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 20;
+    -webkit-transform: scale(1);
+}
+
+
+
+
+/***** 幻灯片动画样式定义 *****/
+body > div .actable {
+    opacity: 0;
+    /* opacity: 1; */
+}
+body > div .acted {
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+}
+
+
+
+
+/***** 模板属性 *****/
+
+
+/* 普通模板 */
+.tmpl-normal {
+}
+
+
+/* 大标题模板 */
+.tmpl-title {
+    text-align: center;
+}
+
+.tmpl-title h1 {
+    margin-top: 120px;
+}
+
+
+/* 子标题模板 */
+.tmpl-subtitle h2 {
+    margin-top: 120px;
+    padding: 0 40px 0 120px;
+}
+
+.tmpl-subtitle p {
+    padding: 0 120px;
+}
+
+
+/* 图片展示模板 */
+.tmpl-picture {
+    text-align: center;
+}
+.tmpl-picture img {
+    margin-top: 20px;
+    border: 1px black solid;
+    height: 200px;
+}
+
+
+/* 分栏模板 */
+.tmpl-columns > section {
+    -webkit-column-count: 2;
+    -webkit-column-gap: 40px;
+    -webkit-column-rule: 0;
+}
+
+
+/* 块状正文模板 */
+.tmpl-block > section {
+    height: 280px;
+}
+
+.tmpl-block > section > *:first-child {
+    height: 100%;
+}
+
+.tmpl-block > section > img:first-child,
+.tmpl-block > section > video:first-child {
+    border: 1px black solid;
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+

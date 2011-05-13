@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>如何制作简易的HTML5幻灯片</title>
+
+<link rel="stylesheet" href="css/style.css" />
+
+<!--[if lte IE 9]>
+<link rel="stylesheet" href="css/style.ie.css" />
+<![endif]-->
+
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="css/style.ie7.css" />
+<![endif]-->
+
+<script src="js/jquery.js"></script>
+
+<script src="js/script.js"></script>
+
+<!--[if lte IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="js/script.ie.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+
+<div class="tmpl-title">
+    <h1>如何制作简易的HTML5幻灯片</h1>
+    <section>
+        <p>赵锦江</p>
+    </section>
+</div>
+
+<div>
+    <h2>自我介绍</h2>
+    <section>
+        <ul>
+            <li>赵锦江(勾三股四)</li>
+            <li>Tags: maxthon/f2e/music/football</li>
+            <li>QQ: 110698041</li>
+            <li>E/M: zhaojinjiang@yahoo.com.cn</li>
+            <li>Blog: <a href="http://bulaoge.net/?g3g4" target="_blank">
+                    http://bulaoge.net/?g3g4</a></li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>HTML5 幻灯片演示</h2>
+    <section>
+        <ul>
+            <li class="actable"><a href="demo/index.htm" target="_blank">
+                    《HTML5游戏开发实例分享》(罗睿 2011.02) 之html5重构版</a></li>
+            <li class="actable"><a href="https://html5rocks.googlecode.com/hg/slides.html5rocks.com/html5.html" target="_blank">
+                    http://slides.html5rocks.com/</a></li>
+            <li class="actable"><a href="http://meyerweb.com/eric/tools/s5/s5-intro.html" target="_blank">
+                    S5: A Simple Standards-Based Slide Show System</a></li>
+            <li class="actable"><a href="http://leaverou.me/csss/sample-slideshow.html" target="_blank">
+                    CSSS: CSS-based SlideShow System</a></li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>主要内容</h2>
+    <section>
+        <ol>
+            <li><strong>HTML5</strong>简简简介</li>
+            <li>我们该如何看待HTML5<ol>
+            <li><strong>前端</strong>vs<strong>前端工程师</strong></li>
+            <li><strong>前端</strong>的发展和<strong>浏览器</strong>的发展</li></ol></li>
+            <li>HTML5幻灯片的<strong>制作过程</strong><ol>
+            <li><strong>功能点</strong>摘要</li>
+            <li>结合<strong>代码讲解</strong>实现思路</li></ol></li>
+            <li><strong>发散</strong>思维</li>
+        </ol>
+    </section>
+</div>
+
+<div class="tmpl-subtitle">
+    <h2>一、HTML5简简简介</h2>
+    <p>HTML 5 === <strong>Web Application</strong></p>
+</div>
+
+<div class="tmpl-subtitle">
+    <h2>二、我们该如何看待HTML5</h2>
+</div>
+
+<div>
+    <h2>前端 != 前端工程师</h2>
+    <section>
+        <ul>
+            <li>前端开发需要更广阔的<strong>技术视野</strong><ul><li>
+                而不仅仅是<del>JS语言专家</del></li></ul></li>
+            <li>前端开发中<del>界面和交互</del>所占的比例越来越小<ul><li>
+                文件处理、图形处理、网络通信、数据库操作……</li></ul></li>
+            <li>前端开发有了<strong>真正的开发</strong>的味道<ul><li>
+                面向对象思想、数据结构与算法、编译原理……</li></ul></li>
+            <br>
+            <li>面临严峻挑战，转变观念非常重要！<ul><li>
+                <strong>前端工程师将无法胜任前端的工作<br>
+                ——这绝对不是危言耸听！</strong></li></ul></li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>前端的发展和浏览器的发展</h2>
+    <section>
+        <ul>
+            <li>IE6 份额居高不下</li>
+            <li>HTML5 对开发人员的帮助是直接的，对用户的帮助是间接的</li>
+            <li>Web App 还没有在国内市场扮演起重要的角色</li>
+            <li>尊重技术，同时尊重用户</li>
+        </ul>
+    </section>
+</div>
+
+<!--div class="tmpl-subtitle">
+    <h2>IE6可以死……</h2>
+</div>
+
+<div class="tmpl-title">
+    <h1>药家鑫必需死！</h1>
+</div-->
+
+<div>
+    <h2>三、HTML5幻灯片的制作过程</h2>
+    <section>
+        <ol>
+            <li><strong>功能点</strong>摘要</li>
+            <li><strong>HTML</strong>结构设计</li>
+            <li>分步实现<strong>JS逻辑</strong>和<strong>CSS表现</strong></li>
+            <li><strong>特殊元素</strong>特殊处理</li>
+            <li>其它<strong>高级</strong>处理</li>
+            <li>结合源代码逐步讲解</li>
+        </ol>
+        <p>注：部分动画和缩放特效暂只针对 Webkit <sub>v533.9</sub> 内核进行开发</p>
+    </section>
+</div>
+
+<div>
+    <h2>1. 功能点整理</h2>
+    <section>
+        <ul>
+            <li class="actable">上翻页，下翻页<ul>
+    			<li class="actable">快捷键：上、下、左、右</li>
+    			<li class="actable">快捷键：PAGE UP、PAGE DOWN</li>
+    			<li class="actable"><del>鼠标单击事件、鼠标滚轮事件</del></li>
+    			<li class="actable"><del>触摸屏幕事件</del></li>
+    		</ul>
+    		</li>
+    		<li class="actable">翻页到最前、最后：<ul>
+    			<li class="actable">快捷键：HOME、END</li>
+    		</ul>
+    		</li>
+    		<li class="actable">翻到指定的页<ul>
+    			<li class="actable">通过location hash，即#slideX<ul>
+    				<li class="actable">注意：要考虑hash纠错</li>
+    			</ul>
+    			</li>
+    			<li class="actable">通过快捷键，Ctrl + G</li>
+    		</ul>
+    		</li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>2. HTML结构设计</h2>
+    <section>
+        <ul>
+            <li class="actable">原则：尽量让结构<strong>简单</strong>、尽量<strong>沿用Powerpoint</strong>的结构</li>
+    		<li class="actable">只要body &gt; div.slide</li>
+            <li class="actable">确定id命名规律：#slideX</li>
+            <li class="actable">提供统一的.tmpl-xxx<strong>模板</strong>类型，这里和Powerpoint中的模板对应</li>
+            <li class="actable">每个页面都可以由标题(h1)、次标题(h2)、正文、段落、图片等<strong>固定标签</strong>组合而成，和Powerpoint中的元素对应</li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>3. 分步实现JS逻辑和CSS表现</h2>
+    <section>
+        <ul>
+            <li class="actable">初始化基本样式</li>
+            <li class="actable">通过:target伪类实现当前显示哪张幻灯片</li>
+            <li class="actable">为不同的模板类设置不一样的显示效果</li>
+            <li class="actable">设置三个基本的翻页的js接口：gotoPage/gotoNext/gotoPrev</li>
+            <li class="actable">在页面载入时进行初始化调整</li>
+            <li class="actable">绑定相关的鼠标、键盘事件</li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>4. 特殊元素特殊处理</h2>
+    <section>
+        <ul>
+            <li class="actable">幻灯片<strong>内部动画</strong><ul><li>
+                通过为动画元素增加一个特殊的class来进行识别</li></ul></li>
+            <li class="actable">当幻灯片内有input/textarea/select，且用户聚焦在这些表单控件上时，需要<strong>屏蔽全局快捷键和鼠标事件</strong></li>
+        </ul>
+        <p class="actable">测试用文本框：<input type="text" /></p>
+    </section>
+</div>
+
+<div>
+    <h2>5. 其它高级处理</h2>
+    <section>
+        <ul>
+            <li class="actable">加入幻灯之间的<strong>切换动画</strong>，未来可尝试<strong>插件化</strong>和多样化</li>
+            <li class="actable">完善幻灯片<strong>样式模板</strong>机制，未来可尝试模板<strong>代码独立</strong><ul>
+                <li><a href="templates.htm" target="_blank">模板展示</a></li></ul></li>
+            <li class="actable">设计了几个简单的<strong>程序钩子</strong>(hooks)</li>
+            <li class="actable"><strong>兼容 IE 6</strong><ul>
+                <li class="actable">通过条件注释 + 程序钩子 (+ flash)实现</li>
+                <li class="actable">用一颗 Web App 的心去看待 IE 6，那么它也是 HTML5 的一部分 ^_^</li></ul></li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>6. 结合源代码逐步讲解</h2>
+    <section>
+        <ul>
+            <li>HTML代码 (index.html, 右键菜单→查看源代码)</li>
+            <li>样式代码 (<a href="css/style.css" target="_blank">style.css</a>)<ul>
+                <li>兼容IE的样式代码 (<a href="css/style.ie.css" target="_blank">style.ie.css</a>)</li>
+                <li>兼容IE7/IE6的样式代码 (<a href="css/style.ie7.css" target="_blank">style.ie7.css</a>)</li></ul></li>
+            <li>脚本代码 (<a href="js/script.js" target="_blank">script.js</a>)<ul>
+                <li>兼容IE的脚本代码 (<a href="js/script.ie.js" target="_blank">script.ie.js</a>)</li></ul></li>
+        </ul>
+    </section>
+</div>
+
+<div>
+    <h2>四、发散思路</h2>
+    <section>
+        <ul>
+            <li class="actable">更好的<strong>标签语义</strong></li>
+            <li class="actable">根据文字内容多少<strong>自适应文字大小</strong></li>
+            <li class="actable"><strong>快速预览</strong>多张幻灯片的全局查看模式</li>
+            <li class="actable">页面悬停左右区域时显示<strong>翻页按钮</strong></li>
+            <li class="actable"><strong>辅助工具</strong>：马克笔等</li>
+            <li class="actable">开发配套的<strong>可视化编辑器</strong>和<strong>页面生成程序</strong></li>
+            <li class="actable">可以将网页<strong>格式</strong>在博客和幻灯片之间<strong>自由转换</strong></li>
+            <li class="actable">完成一个带<strong>账户系统</strong>的幻灯片<strong>分享网站</strong></li>
+            <li class="actable">应对不同的浏览器和操作系统</li>
+            <li class="actable">无障碍操作、演示用的移动端简易控制器</li>
+        </ul>
+    </section>
+</div>
+
+<div class="tmpl-subtitle">
+    <h2>木有了！</h2>
+    <p>欢迎提问</p>
+</div>
+
+</body>
+
+</html>
