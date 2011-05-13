@@ -46,13 +46,15 @@ body > div {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: absolute;
-    z-index: 10;
     top: 0;
     left: 0;
+    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+
+    /* 幻灯片切换的动画效果 */
     opacity: 0;
+    z-index: 10;
     -webkit-transition: all 0.3s ease-in-out;
     -webkit-transform: scale(1.2) rotate(5deg);
-    -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
 }
 
 body > div:nth-child(even) {
@@ -62,10 +64,10 @@ body > div:nth-child(even) {
 
 /* 展示中的幻灯片的样式 */
 body > div:target {
-    top: 0;
-    left: 0;
-    opacity: 1;
+
+    /* 幻灯片切换的动画效果 */
     z-index: 20;
+    opacity: 1;
     -webkit-transform: scale(1);
 }
 
@@ -75,7 +77,6 @@ body > div:target {
 /***** 幻灯片动画样式定义 *****/
 body > div .actable {
     opacity: 0;
-    /* opacity: 1; */
 }
 body > div .acted {
     opacity: 1;
