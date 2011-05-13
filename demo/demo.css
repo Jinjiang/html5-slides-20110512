@@ -143,7 +143,7 @@ body > div .acted {
     max-height: 400px;
 }
 .tmpl-block > section > *:first-child {
-    height: 100%;
+    width: 100%;
 }
 .tmpl-block > section > img:first-child,
 .tmpl-block > section > video:first-child {
