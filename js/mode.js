@@ -22,7 +22,7 @@ function slides2Articel() {
     $('head').append('<link rel="stylesheet" href="css/read.css" />');
     document.body.style.cssText = '';
     $(window).unbind('resize', resize);
-    $('html, body').unbind('keydown', keydown);
+    $('body').unbind('keydown', keydown);
 
     // 修改状态参数
     mode = 2;
@@ -47,12 +47,14 @@ function articel2Slides() {
     $('head').append('<link rel="stylesheet" href="css/style.css" />');
     resize();
     $(window).resize(resize);
-    $('html, body').keydown(keydown);
+    $('body').keydown(keydown);
     
     // 修改状态参数
     mode = 1;
 
     // 初始化显示第一张幻灯片
+    $('.acted').removeClass('acted').addClass('actable');
+    currentPage = 1;
     location = '#slide1';
 }
 
