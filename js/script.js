@@ -291,7 +291,7 @@ $(function () {
     // 初始化页面尺寸，绑定键盘事件
     resize();
     $(window).resize(resize);
-    $('html, body').keydown(keydown);
+    $('body').keydown(keydown);
 
     // 初始化幻灯片的总数
     maxPage = $('body > div').each(function (i, slide) {
