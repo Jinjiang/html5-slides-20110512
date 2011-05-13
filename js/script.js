@@ -46,6 +46,8 @@ function gotoPage(page) {
 
     currentPage = page;
     location = '#slide' + currentPage;
+    window.scrollX = 0;
+    window.scrollY = 0;
 
     // 翻页之后的扩展钩子
     runHooks(hooksAfterNav);
@@ -132,6 +134,10 @@ $(function () {
     }
     else {
         currentPage = pageTarget[1];
+        
+        // hack the refresh problem in firefox/opera
+        location = '#slide0';
+        location = '#slide' + currentPage;
     }
     
     // 程序初始化之后的扩展钩子
@@ -204,30 +210,39 @@ $('html, body').keydown(function (evt) {
     // 根据按键匹配操作
     switch (evt.keyCode) {
     case 33:
+        evt.preventDefault();
         gotoPrev();
         break;
     case 34:
+        evt.preventDefault();
         gotoNext();
         break;
     case 35:
+        evt.preventDefault();
         gotoPage(maxPage);
         break;
     case 36:
+        evt.preventDefault();
         gotoPage(1);
         break;
     case 37:
+        evt.preventDefault();
         gotoPrev();
         break;
     case 38:
+        evt.preventDefault();
         gotoPrev();
         break;
     case 39:
+        evt.preventDefault();
         gotoNext(true);
         break;
     case 40:
+        evt.preventDefault();
         gotoNext(true);
         break;
     case 13:
+        evt.preventDefault();
         gotoNext();
         break;
     case 71:
@@ -253,23 +268,34 @@ function resize() {
     var marginTop = 0;
     var marginLeft = 0;
     
-    if (typeof document.body.style.WebkitTransform == 'string') {
-        // 针对webkit内核，通过translate的方式进行幻灯片缩放，以便适合各种分辨率
+    if (typeof document.body.style.WebkitTransform == 'string' ||
+            typeof document.body.style.MozTransform == 'string' ||
+            typeof document.body.style.OTransform == 'string' ||
+            typeof document.body.style.transform == 'string') {
+        // 针对有transform属性内核，通过translate的方式进行幻灯片缩放，以便适合各种分辨率
         scale = Math.min(screenSize.w / defaultSize.w, screenSize.h / defaultSize.h);
         scale =  Math.round(scale * 100) / 100;
     
         marginTop = Math.round((screenSize.h - (defaultSize.h - 60) * scale) / 2);
         marginLeft = Math.round((screenSize.w - (defaultSize.w - 90) * scale) / 2 -
                 (screenSize.w * (1 - scale) / 2));
+        
+        var cssText = 'translate(' + marginLeft + 'px, ' + marginTop + 'px) scale(' + scale + ')';
 
-        $(document.body).css('WebkitTransform',
-                'translate(' + marginLeft + 'px, ' + marginTop + 'px) scale(' + scale + ')');
+        $(document.body).css('WebkitTransform', cssText).
+                css('MozTransform', cssText).
+                css('OTransform', cssText).
+                css('transform', cssText);
     }
     else {
-        // 针对非webkit内核，通过top/left设置幻灯片位置为居中
-        marginTop = Math.round((screenSize.h - (defaultSize.h - 60) * scale) / 2);
-        marginLeft = Math.round((screenSize.w - (defaultSize.w - 90) * scale) / 2 -
-                (screenSize.w * (1 - scale) / 2));
+        // 针对ie内核，通过top/left设置幻灯片位置为居中
+        var scale = (screen.deviceXDPI / screen.systemXDPI) || 1;
+        /*marginTop = Math.round(((screenSize.h - defaultSize.h - 60) * scale) / 2);
+        marginLeft = Math.round(((screenSize.w - defaultSize.w - 90) * scale) / 2 -
+                (screenSize.w * (1 - scale) / 2));*/
+        console.log([screenSize.h, defaultSize.h, scale]);
+        marginTop = Math.round((screenSize.h - defaultSize.h + 60) / 2);
+        marginLeft = Math.round((screenSize.w - defaultSize.w + 90) / 2);
 
         $('body > div').css('top', marginTop + 'px').css('left', marginLeft + 'px');
     }

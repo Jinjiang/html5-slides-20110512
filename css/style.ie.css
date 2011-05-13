@@ -12,12 +12,13 @@
 
 /***** 基本属性 *****/
 .slide {
-    width: 600px;
-    height: 400px;
+    width: 520px;
+    height: 360px;
     overflow: hidden;
     margin: auto;
     position: absolute;
-    background-color: #cccc99;
+    background-color: #00eeff;
+    box-sizing: content-box;
     padding: 20px 40px;
 
     /* IE下幻灯片切换的效果 */
